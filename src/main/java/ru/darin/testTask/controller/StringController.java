@@ -12,6 +12,8 @@ import ru.darin.testTask.util.ExceptionBuilder;
 import ru.darin.testTask.util.StringErrorResponse;
 import ru.darin.testTask.util.StringException;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 public class StringController {
@@ -32,6 +34,11 @@ public class StringController {
                 System.currentTimeMillis()
         );
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/allStrings")
+    public List<StringDTO> allStrings() {
+        return service.allStrings();
     }
 
 }

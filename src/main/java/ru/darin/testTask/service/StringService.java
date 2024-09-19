@@ -7,10 +7,7 @@ import ru.darin.testTask.dto.StringDTO;
 import ru.darin.testTask.model.StringModel;
 import ru.darin.testTask.repository.StringRepository;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,6 +25,10 @@ public class StringService {
     @Transactional
     public void saveString(StringModel model) {
         repository.save(model);
+    }
+
+    public List<StringDTO> allStrings() {
+        return repository.findAll().stream().map(this::convertToDTOFromModel).toList();
     }
 
     public StringDTO convertToDTOFromModel(StringModel model) {

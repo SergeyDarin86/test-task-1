@@ -1,0 +1,1 @@
+delete from string_model where str_id > 0;
