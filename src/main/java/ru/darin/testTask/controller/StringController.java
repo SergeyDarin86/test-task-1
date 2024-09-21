@@ -27,6 +27,11 @@ public class StringController {
         return ResponseEntity.ok(service.getResultWithCountOfCharacters(dto));
     }
 
+    @GetMapping("/allStrings")
+    public List<StringDTO> allStrings() {
+        return service.allStrings();
+    }
+
     @ExceptionHandler
     private ResponseEntity<StringErrorResponse> libraryHandlerException(StringException e) {
         StringErrorResponse response = new StringErrorResponse(
@@ -34,11 +39,6 @@ public class StringController {
                 System.currentTimeMillis()
         );
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
-
-    @GetMapping("/allStrings")
-    public List<StringDTO> allStrings() {
-        return service.allStrings();
     }
 
 }

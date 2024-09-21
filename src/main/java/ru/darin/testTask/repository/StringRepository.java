@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.darin.testTask.model.StringModel;
 
 @Repository
-public interface StringRepository extends JpaRepository<StringModel,Integer> {
+public interface StringRepository extends JpaRepository<StringModel, Integer> {
 }

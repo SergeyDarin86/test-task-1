@@ -1,5 +1,5 @@
 package ru.darin.testTask.model;
-//
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;

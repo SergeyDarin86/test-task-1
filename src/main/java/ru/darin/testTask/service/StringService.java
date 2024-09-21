@@ -59,7 +59,7 @@ public class StringService {
         return map;
     }
 
-    public Map<Character,Integer> getResultWithCountOfCharacters(StringDTO dto) {
+    public Map<Character, Integer> getResultWithCountOfCharacters(StringDTO dto) {
 
         return getFillingMapOfCharactersFromString(dto).entrySet()
                 .stream()

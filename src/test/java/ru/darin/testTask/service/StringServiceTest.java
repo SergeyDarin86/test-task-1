@@ -23,6 +23,8 @@ class StringServiceTest {
 
     private ModelMapper mapper = Mockito.mock(ModelMapper.class);
 
+    StringDTO dto = new StringDTO();
+
     @InjectMocks
     private StringService service;
 
@@ -54,15 +56,17 @@ class StringServiceTest {
 
     @Test
     void convertToModelFromDTO() {
-        StringDTO dto = new StringDTO();
         service.convertToModelFromDTO(dto);
         verify(mapper, times(1)).map(dto, StringModel.class);
     }
 
+    @BeforeEach
+    void createDto() {
+        dto.setStr("aaabb");
+    }
+
     @Test
     void getFillingMapOfCharactersFromString() {
-        StringDTO dto = new StringDTO();
-        dto.setStr("aaabb");
         Map<Character, Integer> expectedMap = new HashMap<>();
         expectedMap.put('a', 3);
         expectedMap.put('b', 2);
@@ -72,12 +76,9 @@ class StringServiceTest {
 
     @Test
     void getResultWithCountOfCharacters() {
-        StringDTO dto = new StringDTO();
-        dto.setStr("aaabbbb");
-        Map<Character,Integer> expectedLinkedHashMap = new LinkedHashMap<>();
-        expectedLinkedHashMap.put('a',3);
-        expectedLinkedHashMap.put('b',4);
-
+        Map<Character, Integer> expectedLinkedHashMap = new LinkedHashMap<>();
+        expectedLinkedHashMap.put('b', 2);
+        expectedLinkedHashMap.put('a', 3);
 
         assertEquals(expectedLinkedHashMap, service.getResultWithCountOfCharacters(dto));
     }

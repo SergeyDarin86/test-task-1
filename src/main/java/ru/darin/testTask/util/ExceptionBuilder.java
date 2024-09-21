@@ -7,7 +7,6 @@ import java.util.List;
 
 public class ExceptionBuilder {
 
-
     public static void buildErrorMessageForClient(BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             StringBuilder errorMsg = new StringBuilder();
