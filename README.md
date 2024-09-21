@@ -29,7 +29,7 @@
 6. Отправляем запрос на выполнение с помощью кнопки <b>"Send"</b>. (Смотри рисунок ниже)
 
 <h2 align="center">
-  <img src="IMG/Changing_password.png" alt="drawing" width="50"/>
+  <img src="IMG/send_string.png" alt="drawing" width="50"/>
 </h2>
 
 Данные вводятся в виде сплошной строки без пробелов. При этом допускаются латинские символы, кириллица, цифры.
