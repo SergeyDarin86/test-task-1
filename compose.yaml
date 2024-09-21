@@ -1,9 +1,43 @@
+version: "3.8"
+
 services:
-  postgres:
-    image: 'postgres:latest'
+  sqldb:
+    image: postgres:13.3
+    restart: unless-stopped
+    networks:
+      - task-connection
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=16s11w86d
+      - POSTGRES_DB=split_string
     ports:
-      - '5432'
+      - 5432:5432
+    volumes:
+      - ./initSql:/docker-entrypoint-initdb.d
+  string:
+    depends_on:
+      - sqldb
+    build:
+      context: .
+    networks:
+      - task-connection
+    ports:
+      - 8080:8080
+    environment:
+      - spring.datasource.driver-class-name=org.postgresql.Driver
+      - spring.datasource.url=jdbc:postgresql://sqldb:5432/split_string
+      - spring.datasource.username=postgres
+      - spring.datasource.password=16s11w86d
+      - spring.jpa.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+      - spring.jpa.show-sql=true
+      - spring_jpa_properties_hibernate_boot_allow_jdbc_metadata_access=false
+    stdin_open: true
+    tty: true
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  task-connection:
+    driver: bridge
